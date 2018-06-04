@@ -1,14 +1,18 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/html">
-    <head>
-        <title>Home - Programming Database</title>
-    </head>
+{%  extends 'base.html' %}
 
-    <body>
-        <h1>Programming Database</h1>
-        {% for item in items %}
+{% block head %}
+    <title>Home - Programming Database</title>
+{% endblock %}
+
+{% block body %}
+    {% for category in categories %}
+        <h3>{{ category.name }}</h3>
+        {% for item in category.item.item_set.all %}
             <a href="{% url 'item' item_id=item.id %}">{{ item.name }}</a>
-            <p>{{ item.description }}</p>
+            <br>
         {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{#    {% for item in items %}#}
+{#        <a href="{% url 'item' item_id=item.id %}">{{ item.name }}</a>#}
+{#    {% endfor %}#}
+{% endblock %}

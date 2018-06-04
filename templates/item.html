@@ -1,10 +1,20 @@
-<!doctype html>
-<html>
-    <head>
+{% extends 'base.html' %}
+
+{% block head %}
+    {% if item != None %}
         <title>{{ item.name }} - Programming Database</title>
-    </head>
-    <body>
+    {% else %}
+        <title>Invalid Item</title>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <a href="{% url 'index' %}">&lt; Back</a>
+    {% if item != None %}
         <h1>{{ item.name }}</h1>
+        <h4>{{ item.category.name }}</h4>
         <p>{{ item.description }}</p>
-    </body>
-</html>
+    {% else %}
+        <p>Looks like you're searching for an item that does not exist</p>
+    {% endif %}
+{% endblock %}
